@@ -48,6 +48,7 @@ This allows the container to be pre-configured in one location.
 There are a number of variables to affect behaviour.
 
 | Name | Default | Description |
+| `OPENSIM_SERVER_DLL` | `OpenSim.dll` | Server DLL to start |
 | `OPENSIM_GIT_REF` | `master` | Git Branch to get for source build |
 | `OPENSIM_RELEASE_REF` | `r58b7b39 ` | Release reference for release build |
 | `OPENSIM_RELEASE_URL` | `https://github.com/opensim/opensim/releases/download/${OPENSIM_RELEASE_REF}/LastDotNetBuild.zip` | Full URL of release download |
