@@ -4,12 +4,28 @@ set -eu
 WORKSPACE_DIR="${WORKSPACE_DIR:-/workspace}"
 OPENSIM_DIR="${OPENSIM_DIR:-/opt/opensim}"
 CONFIG_DIR="${CONFIG_DIR:-/config}"
+LOGS_DIR="${LOGS_DIR:-/logs}"
 BIN_DIR="${BIN_DIR:-${OPENSIM_DIR}/bin}"
 OPENSIM_SERVER_DLL="${OPENSIM_SERVER_DLL:-OpenSim.dll}"
 
-mkdir -p "${WORKSPACE_DIR}"
+mkdir -p "${WORKSPACE_DIR}" "${LOGS_DIR}" "${CONFIG_DIR}"
 
-# Ensure OpenSim configuration files are symlinked to the config directory, so that OpenSim will use them.
+# Ensure OpenSim configuration files and log files are symlinked to the config directory, so that OpenSim will use them.
+if [ ! -L "${BIN_DIR}/OpenSim.log" ] ; then
+    printf '[opensim] Symlinking OpenSim.log.\n'
+    rm -f "${BIN_DIR}/OpenSim.log" "${BIN_DIR}/OpenSimStats.log"
+    touch "${LOGS_DIR}/OpenSim.log"
+    touch "${LOGS_DIR}/OpenSimStats.log"
+    ln -sf "${LOGS_DIR}/OpenSim.log" "${BIN_DIR}/OpenSim.log"
+    ln -sf "${LOGS_DIR}/OpenSimStats.log" "${BIN_DIR}/OpenSimStats.log"
+fi
+
+if [ -f "${CONFIG_DIR}/Robust.ini" -a ! -L "${BIN_DIR}/Robust.ini" ] ; then
+    printf '[opensim] Symlinking Robust.ini.\n'
+    rm -f "${BIN_DIR}/Robust.ini"
+    ln -sf "${CONFIG_DIR}/Robust.ini" "${BIN_DIR}/Robust.ini"
+fi
+
 if [ -f "${CONFIG_DIR}/Robust.ini" -a ! -L "${BIN_DIR}/Robust.ini" ] ; then
     printf '[opensim] Symlinking Robust.ini.\n'
     rm -f "${BIN_DIR}/Robust.ini"

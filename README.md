@@ -34,6 +34,8 @@ Run the container.
 docker run --rm \
   -p 9000:9000 \
   -v examples/standalone:/config \
+  -v logs:/logs \
+  -v workspace:/workspace \
   bithatch/opensim-simulator:latest
 ```
 
@@ -48,6 +50,8 @@ This allows the container to be pre-configured in one location.
 There are a number of variables to affect behaviour.
 
 | Name | Default | Description |
+| `CONFIG_DIR` | `/config` | Location of override configuration files |
+| `LOG_DIR` | `/logs` | Location of log files |
 | `OPENSIM_SERVER_DLL` | `OpenSim.dll` | Server DLL to start |
 | `OPENSIM_GIT_REF` | `master` | Git Branch to get for source build |
 | `OPENSIM_RELEASE_REF` | `r58b7b39 ` | Release reference for release build |

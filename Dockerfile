@@ -60,7 +60,9 @@ RUN mkdir -p \
     /opt/opensim/bin/config-include \
     /opt/opensim/bin/assetcache \
     /opt/opensim/bin/maptiles \
-    /opt/opensim/bin/crashes
+    /opt/opensim/bin/crashes \
+    /config \
+    /logs 
 
 EXPOSE 9000/tcp 9000/udp
 ENTRYPOINT ["/opt/opensim/docker/entrypoint.sh"]
@@ -93,7 +95,9 @@ RUN mkdir -p \
     /opt/opensim/bin/config-include \
     /opt/opensim/bin/assetcache \
     /opt/opensim/bin/maptiles \
-    /opt/opensim/bin/crashes
+    /opt/opensim/bin/crashes \
+    /config \
+    /logs 
 
 EXPOSE 9000/tcp 9000/udp
 ENTRYPOINT ["/opt/opensim/docker/entrypoint.sh"]
