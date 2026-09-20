@@ -1,9 +1,9 @@
 # OpenSimulator Docker Image
 
-[![OpenSimulator](https://img.shields.io/badge/Docker%20Hub-bithatch%2Fopensim-simulator-latest?logo=docker&logoColor=white)](https://hub.docker.com/repository/docker/bithatch/opensim-simulator/general)
+[![OpenSimulator](https://img.shields.io/badge/Docker%20Hub-bithatch%2Fopensim--simulator-blue?logo=docker&logoColor=white)](https://hub.docker.com/r/bithatch/opensim-simulator)
 [![Docker Publish](https://github.com/opensim-stack/opensim-simulator/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/opensim-stack/opensim-simulator/actions/workflows/docker-publish.yml)
 
-A Docker image for [OpenSimulator](http://opensimulator.org/), built specifically for [OpenSim AI Stack](https://opensim-stack.github.io), but other use-cases as possible.
+A Docker image for [OpenSimulator](http://opensimulator.org/), built specifically for [OpenSim AI Stack](https://opensim-stack.github.io), but other use-cases are possible.
 
 ## Purpose
 
@@ -51,6 +51,7 @@ This allows the container to be pre-configured in one location.
 There are a number of variables to affect behaviour.
 
 | Name | Default | Description |
+| ---- | ------- | ----------- |
 | `CONFIG_DIR` | `/config` | Location of override configuration files |
 | `LOG_DIR` | `/logs` | Location of log files |
 | `OPENSIM_SERVER_DLL` | `OpenSim.dll` | Server DLL to start |
