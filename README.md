@@ -1,6 +1,7 @@
 # OpenSimulator Docker Image
 
 [![OpenSimulator](https://img.shields.io/badge/Docker%20Hub-bithatch%2Fopensim-simulator-latest?logo=docker&logoColor=white)](https://hub.docker.com/repository/docker/bithatch/opensim-simulator/general)
+[![Docker Publish](https://github.com/opensim-stack/opensim-simulator/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/opensim-stack/opensim-simulator/actions/workflows/docker-publish.yml)
 
 A Docker image for [OpenSimulator](http://opensimulator.org/), built specifically for [OpenSim AI Stack](https://opensim-stack.github.io), but other use-cases as possible.
 

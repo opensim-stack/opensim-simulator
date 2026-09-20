@@ -40,3 +40,24 @@ docker buildx build \
   --push \
   .
 ```
+
+## Automated Publish (GitHub Actions)
+
+This repository now includes `.github/workflows/docker-publish.yml` to automatically build and push a multiarch image to Docker Hub.
+
+### Triggers
+
+- Pushes to `master` or `main` when `Dockerfile`, `docker/**`, or the workflow itself changes
+- Git tags matching `v*`
+- Manual `workflow_dispatch`
+
+### Required Repository Secrets
+
+- `DOCKERHUB_USERNAME`: Docker Hub username or org robot account name
+- `DOCKERHUB_TOKEN`: Docker Hub access token (recommended) or password
+
+### Published Platforms and Tags
+
+- Platforms: `linux/amd64`, `linux/arm64`
+- Tags (default branch): `latest`, `YYYYMMDD`, and `sha-<commit>`
+- Tags (tag builds): `<git-tag>` and `sha-<commit>`

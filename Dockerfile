@@ -73,7 +73,7 @@ ENTRYPOINT ["/opt/opensim/docker/entrypoint.sh"]
 # -----------------------------
 FROM runtime-base AS release-runtime
 
-ARG OPENSIM_RELEASE_REF=r58b7b39
+ARG OPENSIM_RELEASE_REF=r98cd283
 ARG OPENSIM_RELEASE_URL=https://github.com/opensim/opensim/releases/download/${OPENSIM_RELEASE_REF}/LastDotNetBuild.zip
 
 RUN set -eux; \
