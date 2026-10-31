@@ -22,6 +22,8 @@ concurrency:
 
 env:
   IMAGE_NAME: bithatch/opensim-simulator
+  OPENSIM_GIT_URL: https://github.com/opensim-stack/opensim.git
+  OPENSIM_GIT_REF: master
 
 jobs:
   build-and-push:
@@ -61,6 +63,9 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
+          build-args: |
+            OPENSIM_GIT_URL=${{ env.OPENSIM_GIT_URL }}
+            OPENSIM_GIT_REF=${{ env.OPENSIM_GIT_REF }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha

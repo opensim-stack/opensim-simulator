@@ -8,6 +8,14 @@ Build and publish multiarch image.
 docker build -t opensim-simulator:local .
 ```
 
+Note: this default command builds the final Dockerfile stage (`release-runtime`), which uses `OPENSIM_RELEASE_URL` (official release archive).
+
+To build from source (using `OPENSIM_GIT_URL` / your fork defaults), target the source runtime stage explicitly:
+
+```bash
+docker build --target source-runtime -t opensim-simulator:local-source .
+```
+
 ### Run Local
 
 ```bash

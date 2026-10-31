@@ -5,7 +5,7 @@
 # -----------------------------
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS source-build
 
-ARG OPENSIM_GIT_URL=git://opensimulator.org/git/opensim
+ARG OPENSIM_GIT_URL=https://github.com/opensim-stack/opensim.git
 ARG OPENSIM_GIT_REF=master
 
 RUN apt-get update && \
