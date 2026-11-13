@@ -16,6 +16,29 @@ To build from source (using `OPENSIM_GIT_URL` / your fork defaults), target the 
 docker build --target source-runtime -t opensim-simulator:local-source .
 ```
 
+To build from your local OpenSim fork (for example `/home/SOUTHPARK/tanktarta/Documents/Git/opensim`) use the local source stage and pass the fork as a named build context:
+
+```bash
+docker build \
+  --target source-runtime-local \
+  --build-context opensim-src=/home/SOUTHPARK/tanktarta/Documents/Git/opensim \
+  -t opensim-simulator:local \
+  .
+```
+
+Optional quick verification that the DisplayName add-on is compiled into the image:
+
+```bash
+docker build \
+  --target source-runtime-local \
+  --build-context opensim-src=/home/SOUTHPARK/tanktarta/Documents/Git/opensim \
+  -t opensim-simulator:local \
+  .
+
+docker run --rm --entrypoint /bin/bash opensim-simulator:local -lc \
+  'ls -1 /opt/opensim/bin/OpenSim.Addons.DisplayName.dll'
+```
+
 ### Run Local
 
 ```bash

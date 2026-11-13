@@ -3,6 +3,25 @@
 # -----------------------------
 # Source build (clone + compile)
 # -----------------------------
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS source-build-local
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        git \
+        libgdiplus \
+        libc6-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /src/opensim
+
+# Provide local OpenSim fork with:
+#   --build-context opensim-src=/absolute/path/to/opensim
+COPY --from=opensim-src . .
+
+RUN ./runprebuild.sh && \
+    dotnet build --configuration Release OpenSim.sln
+
+
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS source-build
 
 ARG OPENSIM_GIT_URL=https://github.com/opensim-stack/opensim.git
@@ -51,6 +70,23 @@ RUN chmod +x ./docker/*.sh
 # -----------------------------
 # Runtime from source build
 # -----------------------------
+FROM runtime-base AS source-runtime-local
+
+COPY --from=source-build-local /src/opensim/bin ./bin
+
+RUN mkdir -p \
+    /opt/opensim/bin/Regions \
+    /opt/opensim/bin/config-include \
+    /opt/opensim/bin/assetcache \
+    /opt/opensim/bin/maptiles \
+    /opt/opensim/bin/crashes \
+    /config \
+    /logs
+
+EXPOSE 9000/tcp 9000/udp
+ENTRYPOINT ["/opt/opensim/docker/entrypoint.sh"]
+
+
 FROM runtime-base AS source-runtime
 
 COPY --from=source-build /src/opensim/bin ./bin
